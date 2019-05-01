@@ -1,18 +1,49 @@
+//////
+//////  PetAdoptionModel.swift
+//////  Pet App
+//////
+//////  Created by Achem Samuel on 4/29/19.
+//////  Copyright © 2019 Achem Samuel. All rights reserved.
+//////
 ////
-////  PetAdoptionModel.swift
-////  Pet App
-////
-////  Created by Achem Samuel on 4/29/19.
-////  Copyright © 2019 Achem Samuel. All rights reserved.
-////
-//
 //// To parse the JSON, add this file to your project and do:
 ////
 ////   let petModel = try? newJSONDecoder().decode(PetModel.self, from: jsonData)
 //
 //import Foundation
+//import UIKit
 //
-//class PetModel: Codable {
+//func myDate (onComplete : (_ jsonStuff : NSData)->()) -> Void {
+//
+//    guard let path = Bundle.main.url(forResource: "pet_adoption", withExtension: "json") else {
+//        fatalError()
+//    }
+//    let data = try! Data(contentsOf: path, options: [])
+//
+//    //Serialize Json
+//    guard let petAdoptionJson = try! JSONSerialization.jsonObject(with: data, options: []) as? NSData else {
+//        fatalError()
+//    }
+//    onComplete(petAdoptionJson)
+//    //print("Pet Adoption Form Json :\(petAdoptionJson)")
+//}
+//
+//func stu () {
+//
+//    myDate { (dahh) in
+//        print("Chaiiio : \(dahh)")
+//        do {
+//            let decoder = JSONDecoder()
+//            let response = try decoder.decode(PetModela.self, from: dahh as Data)
+//            print("DDDDD hey gawwd :\(response)")
+//        } catch {
+//
+//        }
+//
+//    }
+//
+//}
+//class PetModela: Codable {
 //    let id, name: String
 //    let pages: [Page]
 //
@@ -44,6 +75,7 @@
 //}
 //
 //class Element: Codable {
+//
 //    let type: String
 //    let file: String?
 //    let uniqueID: String

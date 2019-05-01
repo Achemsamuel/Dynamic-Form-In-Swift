@@ -21,6 +21,18 @@
 		A5444F1B2277130B005F15DE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F1A2277130B005F15DE /* MainViewController.swift */; };
 		A5444F1D22776DD7005F15DE /* PetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F1C22776DD7005F15DE /* PetModel.swift */; };
 		A5444F1F22786361005F15DE /* SuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F1E22786361005F15DE /* SuperViewController.swift */; };
+		A5444F232278D5AB005F15DE /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F222278D5AB005F15DE /* DataService.swift */; };
+		A5444F252278F050005F15DE /* FormResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F242278F050005F15DE /* FormResponse.swift */; };
+		A5444F272278F6BF005F15DE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F262278F6BF005F15DE /* Page.swift */; };
+		A5444F292278FA7E005F15DE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F282278FA7E005F15DE /* Section.swift */; };
+		A5444F2B2278FC77005F15DE /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F2A2278FC77005F15DE /* Element.swift */; };
+		A5444F2D2279022E005F15DE /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F2C2279022E005F15DE /* Rule.swift */; };
+		A5444F82227A182B005F15DE /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F81227A182B005F15DE /* Pages.swift */; };
+		A5444F84227A184F005F15DE /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F83227A184F005F15DE /* Sections.swift */; };
+		A5444F86227A1870005F15DE /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F85227A1870005F15DE /* Elements.swift */; };
+		A5444F88227A1878005F15DE /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F87227A1878005F15DE /* Rules.swift */; };
+		A5444F8A227A18DC005F15DE /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F89227A18DC005F15DE /* Views.swift */; };
+		A5444F8C227A2E27005F15DE /* PetFormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5444F8B227A2E27005F15DE /* PetFormCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +74,18 @@
 		A5444F1A2277130B005F15DE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A5444F1C22776DD7005F15DE /* PetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModel.swift; sourceTree = "<group>"; };
 		A5444F1E22786361005F15DE /* SuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperViewController.swift; sourceTree = "<group>"; };
+		A5444F222278D5AB005F15DE /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		A5444F242278F050005F15DE /* FormResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormResponse.swift; sourceTree = "<group>"; };
+		A5444F262278F6BF005F15DE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		A5444F282278FA7E005F15DE /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		A5444F2A2278FC77005F15DE /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		A5444F2C2279022E005F15DE /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		A5444F81227A182B005F15DE /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
+		A5444F83227A184F005F15DE /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		A5444F85227A1870005F15DE /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
+		A5444F87227A1878005F15DE /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		A5444F89227A18DC005F15DE /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		A5444F8B227A2E27005F15DE /* PetFormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetFormCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4E198203F5FEC22F17F99CE /* Pods-Pet AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pet AppUITests/Pods-Pet AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B6450E8E27B882D4C1147888 /* Pods_Pet_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A45D128D7673F89540053D /* Pods-Pet App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pet App/Pods-Pet App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A5444EE1227617FB005F15DE /* Pet App */,
+				A5444F212278D591005F15DE /* Helpers */,
 				A5444EF6227617FE005F15DE /* Pet AppTests */,
 				A5444F01227617FE005F15DE /* Pet AppUITests */,
 				A5444EE0227617FB005F15DE /* Products */,
@@ -167,8 +192,12 @@
 		A5444F1122761833005F15DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A5444F162276F9EE005F15DE /* PetAdoptionModel.swift */,
+				A5444F80227A17F5005F15DE /* Struct */,
 				A5444F1C22776DD7005F15DE /* PetModel.swift */,
+				A5444F81227A182B005F15DE /* Pages.swift */,
+				A5444F83227A184F005F15DE /* Sections.swift */,
+				A5444F85227A1870005F15DE /* Elements.swift */,
+				A5444F87227A1878005F15DE /* Rules.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +205,8 @@
 		A5444F132276184A005F15DE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A5444F89227A18DC005F15DE /* Views.swift */,
+				A5444F8B227A2E27005F15DE /* PetFormCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +225,27 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A5444F212278D591005F15DE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A5444F222278D5AB005F15DE /* DataService.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A5444F80227A17F5005F15DE /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				A5444F2C2279022E005F15DE /* Rule.swift */,
+				A5444F2A2278FC77005F15DE /* Element.swift */,
+				A5444F282278FA7E005F15DE /* Section.swift */,
+				A5444F262278F6BF005F15DE /* Page.swift */,
+				A5444F242278F050005F15DE /* FormResponse.swift */,
+				A5444F162276F9EE005F15DE /* PetAdoptionModel.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 		DDE24CA71B90162AC7E9160E /* Pods */ = {
@@ -450,11 +502,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5444F86227A1870005F15DE /* Elements.swift in Sources */,
+				A5444F292278FA7E005F15DE /* Section.swift in Sources */,
+				A5444F84227A184F005F15DE /* Sections.swift in Sources */,
+				A5444F82227A182B005F15DE /* Pages.swift in Sources */,
+				A5444F8A227A18DC005F15DE /* Views.swift in Sources */,
+				A5444F8C227A2E27005F15DE /* PetFormCollectionViewCell.swift in Sources */,
 				A5444F172276F9EE005F15DE /* PetAdoptionModel.swift in Sources */,
 				A5444EE3227617FB005F15DE /* AppDelegate.swift in Sources */,
+				A5444F2D2279022E005F15DE /* Rule.swift in Sources */,
+				A5444F272278F6BF005F15DE /* Page.swift in Sources */,
+				A5444F2B2278FC77005F15DE /* Element.swift in Sources */,
 				A5444F1F22786361005F15DE /* SuperViewController.swift in Sources */,
+				A5444F232278D5AB005F15DE /* DataService.swift in Sources */,
 				A5444F1B2277130B005F15DE /* MainViewController.swift in Sources */,
 				A5444F1D22776DD7005F15DE /* PetModel.swift in Sources */,
+				A5444F252278F050005F15DE /* FormResponse.swift in Sources */,
+				A5444F88227A1878005F15DE /* Rules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

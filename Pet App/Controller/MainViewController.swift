@@ -7,25 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MainViewController: SuperViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.getData()
-    petAdoptionFormCollectionView.addSubview(super.setUpTextField(label: petModel.name))
-        petAdoptionFormCollectionView.addSubview(super.embedPhoto(fileUrl: "https://images.pexels.com/photos/8700/wall-animal-dog-pet.jpg?cs=srgb&dl=animal-collar-dog-8700.jpg&fm=jpg"))
-        petAdoptionFormCollectionView.addSubview(super.yardOptions())
-        petAdoptionFormCollectionView.addSubview(datePickerSetUp(vc: self))
         
-        petAdoptionFormCollectionView.reloadData()
-        //Navigation BarSetup
-        self.navigationItem.title = petModel.name
-        let navigationBar = navigationController?.navigationBar
-//        navigationBar?.tintColor = UIColor.purple
-//        navigationBar?.barTintColor = UIColor.white
-        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        preSetUp()
    
     }
     
@@ -35,11 +25,25 @@ class MainViewController: SuperViewController {
          setUpStuffWithJson()
     }
     
+    
 /*
     IB Outlets
 */
     @IBOutlet weak var petAdoptionFormCollectionView: UICollectionView!
-
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    
+    func preSetUp () {
+        
+        petAdoptionFormCollectionView.reloadData()
+        
+        //** Navigation Bar Setup
+        self.navigationItem.title = petModels.name
+        let navigationBar = navigationController?.navigationBar
+        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
 }
 
 
@@ -53,30 +57,38 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        print("Pages Count: \(petModel.pages.count/2)")
-        return petModel.pages.count/2
+        return petModels.pages.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         switch  indexPath.section {
         case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+            pages(currentPage: indexPath.section)
+            nextButton.titleLabel?.text = "Next"
+            //previousButton.isHidden = true
             cell.backgroundColor = UIColor.clear
             return cell
         case 1:
-            cell.backgroundColor = UIColor.black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+            pages(currentPage: indexPath.section)
+            previousButton.isHidden = false
+            cell.addSubview(super.yardOptions())
+            cell.backgroundColor = UIColor.clear
+            //nextButton.titleLabel?.text = "Next"
             return cell
         case 2:
-            cell.backgroundColor = UIColor.red
-            return cell
-        case 3:
-            cell.backgroundColor = UIColor.purple
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+            pages(currentPage: indexPath.section)
+            previousButton.isHidden = false
+            cell.addSubview(datePickerSetUp(vc: self))
+            cell.backgroundColor = UIColor.clear
+            nextButton.titleLabel?.text = "Submit"
             return cell
         default:
-            cell.backgroundColor = UIColor.clear
-            return cell
+            return UICollectionViewCell()
         }
     }
     
@@ -92,7 +104,7 @@ override func datePickerSetUp(vc: UIViewController) -> UIDatePicker {
         
     let datePicker : UIDatePicker = UIDatePicker()
     //Position date picker
-    datePicker.frame = CGRect(x: 20, y: 350, width: view.frame.width - 40, height: 90)
+    datePicker.frame = CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 90)
     
     //Set up date picker properties
     datePicker.timeZone = NSTimeZone.local
@@ -125,26 +137,69 @@ override func datePickerSetUp(vc: UIViewController) -> UIDatePicker {
 extension MainViewController {
     
     func setUpStuffWithJson () {
-   
-        for i in 1 ... petModel.pages.count/2 {
-            print("My name oo")
-            print("Page:\(pages.label)")
-            switch i {
-            case 1:
-                for i in 1 ... pages.sections.count {
-                    
-                }
-                print("This is page 1")
+        
+        //print(petModels.pages[1].label)
+       
+        let firstPage = petModels.pages[0]
+        let secondPage = petModels.pages[1]
+        let thirdPage = petModels.pages[2]
+        //print("Page count: \(petModels.pages.count)")
+        
+        if firstPage == firstPage {
+            //print("First Page Section Label: \(pages.sections[0 ..< pages.sections.count])")
+            //print("Section count :\(pages.sections.count)")
+            //print("First Page Section label: \(pages.sections[0].label)")
+            //print("First Page second section label: \(pages.sections[1].label)")
+            //print("Elements File : \(sections.elements[0].type)")
+            let petcell = PetFormCollectionViewCell()
+            let type = "embeddedphoto"
+            if String(sections.elements[0].type) == type {
+                //print("Works finally: \(type)")
+                for i in petModels.pages[0 ..< petModels.pages.count] {
                 
-            case 2:
-                print("This is the next page, maybe 2")
-            case 3:
-                print("This is probably page 3")
-            default:
-                print("")
+                   
+                }
+                petcell.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
+            }
+           
+            
+        }
+        if secondPage == secondPage {
+            //print("Second Page Section Label: \(pages.sections[2].label)")
+        }
+        if thirdPage == thirdPage {
+            //print("Third Page Section Label: \(pages.sections[3].label)")
+        }
+      
+        
+        }
+    
+    func pages (currentPage : Int) {
+        
+        if currentPage == 0 {
+            print("f : \(petModels.pages[0].label.last!)")
+            
+            if (petModels.pages[0].label.last) == "1" {
+                print("Nice!")
+            }
+            
+            if currentPage == 1 {
+                if (petModels.pages[1].label.last) == "2" {
+                    print("Nice 2")
+                }
+            }
+            
+            if currentPage == 2 {
+                if (petModels.pages[2].label.last) == "3" {
+                    print("Nice 3")
+                }
             }
         }
-        
     }
     
+    
 }
+
+    
+
+
