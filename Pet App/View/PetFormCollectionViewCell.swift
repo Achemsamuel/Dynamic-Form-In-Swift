@@ -10,6 +10,6 @@ import UIKit
 
 class PetFormCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var pageLabel: UILabel!
+    @IBOutlet weak var topLabel: UILabel!
     
 }

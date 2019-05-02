@@ -12,17 +12,15 @@ class PetModel : NSObject {
     
     var id = "" {
         didSet {
-           // print("PetModel id :\(id)")
         }
     }
     var name = "" {
         didSet {
-            //print("Pet Model Name: \(name)")
+            
         }
     }
     var pages = [Pages]() {
         didSet {
-//            print("Pet Model Pages: \(pages)")
         }
     }
 }

@@ -22,7 +22,6 @@ class MainViewController: SuperViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-         setUpStuffWithJson()
     }
     
     
@@ -32,13 +31,25 @@ class MainViewController: SuperViewController {
     @IBOutlet weak var petAdoptionFormCollectionView: UICollectionView!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var pageLabel: UILabel!
+    
+    /*
+     Button Methods
+     */
+    @IBAction func nextButtonPressed(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func previousButtonPressed(_ sender: UIButton) {
+        
+    }
+    
     
     
     func preSetUp () {
         
         petAdoptionFormCollectionView.reloadData()
-        
+        nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextButton.titleLabel?.minimumScaleFactor = 0.2
         //** Navigation Bar Setup
         self.navigationItem.title = petModels.name
         let navigationBar = navigationController?.navigationBar
@@ -63,87 +74,87 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
- 
-        for pages in petModels.pages {
-            print("Pages \(pages.label)")
-        }
-        for sectionLabels in pages.sections {
-            print("Sections-- \(sectionLabels.label)")
-        }
-        
-        for elementType in sections.elements {
-            print("Elements \(elementType.type)")
-            if elementType.type.contains("embeddedphoto") {
-                print("true")
-            } else {
-                print("false")
-            }
-        }
-        
-        let mi = pages.sections[indexPath.section]
         
         /*
-         Cell Set up
-         */
-        
-        
+    Cell Set up
+    */
         switch  indexPath.section {
             
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+                cell.topLabel.text = pages.sections[0].label
+                pages(currentPage: indexPath.section)
+                previousButton.isHidden = false
+                cell.backgroundColor = UIColor.clear
             
-            for pages in petModels.pages {
-                if pages.label == "Page 1" {
-                    print("Good stuff")
-                    for elementType in sections.elements {
-                        print("Elements \(elementType.type)")
-                        if elementType.type.contains("embeddedphoto") {
-                            print("true ---")
-                            cell.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
-                        } else {
-                            print("false")
-                        }
-                    
+                for pages in petModels.pages {
+                   
+                    if pages.label == "Page 1" {
+                        for elementType in sections.elements {
+        
+                            if elementType.type.contains("embeddedphoto") {
+                                cell.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file, y: 50))
+                            }
+                            else if elementType.type.contains("text") {
+                                cell.addSubview(super.addTextField(label: sections.elements[1].label, y: 270))
+                                cell.addSubview(super.addTextField(label: sections.elements[2].label, y: 325))
+                            }
+                            else if elementType.type.contains("formattednumeric") {
+                                 cell.addSubview(super.addFormattedNumberField(label: sections.elements[3].label, y: 380))
+                            }
+                            else if elementType.type.contains("datetime") {
+                                cell.addSubview(self.datePickerSetUp(vc: self, y: 435))
+                            }
+                    }
                 }
-                
-                
-            }
-                
-            }
-            for sectionLabels in pages.sections {
-                print("Section : \(sectionLabels.label)")
-                
-               // print("jj: \(mi.label)")
             }
             
-      
-            
-            pages(currentPage: indexPath.section)
-            nextButton.titleLabel?.text = "Next"
-            //previousButton.isHidden = true
-            cell.backgroundColor = UIColor.clear
-            return cell
+        return cell
             
         case 1:
-    
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
-            pages(currentPage: indexPath.section)
-            previousButton.isHidden = false
-            cell.addSubview(super.yardOptions())
-            cell.backgroundColor = UIColor.clear
-            //nextButton.titleLabel?.text = "Next"
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+                cell.topLabel.text = pages.sections[2].label
+                previousButton.isHidden = false
+                cell.backgroundColor = UIColor.clear
+            
+                for pages in petModels.pages {
+                    if pages.label.last! == petModels.pages[1].label.last! {
+                        for elementType in sections.elements {
+                            if elementType.type.contains("yesno") {
+                                cell.addSubview(super.yardOptions(y: 50).1)
+                                 let ind = yardOptions(y: 50).option
+                                    if ind == 1 {
+                                        cell.addSubview(addTextField(label: sections.elements[6].label, y: 100))
+                                    }
+                            }
+                        }
+                    }
+                }
             return cell
             
         case 2:
-            print("kk \(mi.label)")
+
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
-            pages(currentPage: indexPath.section)
-            previousButton.isHidden = false
-            cell.addSubview(datePickerSetUp(vc: self))
-            cell.backgroundColor = UIColor.clear
-            if indexPath.section == petModels.pages.count - 1 {
-                nextButton.titleLabel?.text = "Submit"
-            }
+                cell.topLabel.text = pages.sections[3].label
+                //pages(currentPage: indexPath.section)
+                previousButton.isHidden = false
+                cell.backgroundColor = UIColor.clear
+                if indexPath.section == petModels.pages.count - 1 {
+                    
+                    
+                    for pages in petModels.pages {
+                        if pages.label.last! == petModels.pages[2].label.last! {
+                            
+                            for elementType in sections.elements {
+                                
+                                if elementType.type.contains("text") {
+                                    cell.addSubview(addTextField(label: sections.elements[7].label, y: 50))
+                                    cell.addSubview(addTextField(label: sections.elements[8].label, y: 105))
+                                }
+                            }
+                        }
+                    }
+                }
             
             return cell
             
@@ -156,21 +167,21 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
 }
 
 /*
-    Extra Stub SetUp
+    Date Picker Stub SetUp
  */
 
 extension MainViewController {
     
-override func datePickerSetUp(vc: UIViewController) -> UIDatePicker {
+    override func datePickerSetUp(vc: UIViewController, y : CGFloat) -> UIDatePicker {
         
     let datePicker : UIDatePicker = UIDatePicker()
     //Position date picker
-    datePicker.frame = CGRect(x: 20, y: 400, width: view.frame.width - 40, height: 90)
+    datePicker.frame = CGRect(x: 30, y: y, width: view.frame.width - 50, height: 90)
     
     //Set up date picker properties
     datePicker.timeZone = NSTimeZone.local
-    datePicker.backgroundColor = UIColor.white
-    
+    datePicker.backgroundColor = UIColor.clear
+
     //Add event to sort date
     datePicker.addTarget(self, action: #selector(MainViewController.datePickerValueChanged), for: .valueChanged)
     
@@ -194,70 +205,28 @@ override func datePickerSetUp(vc: UIViewController) -> UIDatePicker {
     
 }
 
+/*
+   Current Page Method
+ */
 
 extension MainViewController {
-    
-    func setUpStuffWithJson () {
-        
-        //print(petModels.pages[1].label)
-       
-        let firstPage = petModels.pages[0]
-        let secondPage = petModels.pages[1]
-        let thirdPage = petModels.pages[2]
-        //print("Page count: \(petModels.pages.count)")
-        
-        if firstPage == firstPage {
-            //print("First Page Section Label: \(pages.sections[0 ..< pages.sections.count])")
-            //print("Section count :\(pages.sections.count)")
-            //print("First Page Section label: \(pages.sections[0].label)")
-            //print("First Page second section label: \(pages.sections[1].label)")
-            //print("Elements File : \(sections.elements[0].type)")
-            let petcell = PetFormCollectionViewCell()
-            let type = "embeddedphoto"
-            if String(sections.elements[0].type) == type {
-                //print("Works finally: \(type)")
-                for i in petModels.pages[0 ..< petModels.pages.count] {
-                
-                   
-                }
-                petcell.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
-            }
-           
-            
-        }
-        if secondPage == secondPage {
-            //print("Second Page Section Label: \(pages.sections[2].label)")
-        }
-        if thirdPage == thirdPage {
-            //print("Third Page Section Label: \(pages.sections[3].label)")
-        }
-      
-        
-        }
     
     func pages (currentPage : Int) {
         
         if currentPage == 0 {
-            print("f : \(petModels.pages[0].label.last!)")
-            
             if (petModels.pages[0].label.last) == "1" {
-                //pageLabel.text = String(petModels.pages[0].label.last!)
-                print("Page \(String(describing: petModels.pages[0].label.last!))")
-                //petFormC.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
+                
             }
         } else if  currentPage == 1 {
                 if (petModels.pages[1].label.last) == "2" {
-                    //pageLabel.text = String(petModels.pages[1].label.last!)
-                    print("Page \(String(describing: petModels.pages[1].label.last!))")
+                    
                 }
             }
-            
             else if currentPage == 2 {
             
-                if (petModels.pages[2].label.last) == "3" {
-                    print("Page \(String(describing: petModels.pages[2].label.last!))")
-                    //pageLabel.text = String(petModels.pages[2].label.last!)
-                }
+            }
+            else if (petModels.pages[2].label.last) == "3" {
+            
             }
         }
     

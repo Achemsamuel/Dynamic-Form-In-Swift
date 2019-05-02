@@ -12,45 +12,44 @@ class Elements : NSObject {
     
     var file = "" {
         didSet {
-            //print("Elements File : \(file)")
+            
         }
     }
     var rules = [Rules]() {
         didSet {
-            //print("Rules : \(rules)")
+            
         }
     }
     var type = "" {
         didSet {
-            //print("Elements Type :\(type)")
+            
         }
     }
     var unique_id = "" {
         didSet {
-            //print("Elelemts unique_id: \(unique_id)")
+            
         }
     }
     //var isMandatory = Bool()
     var isMandatory = Int() {
         didSet {
-            //print("Elelemnts isMandatory: \(isMandatory)")
+            
         }
     }
     var label = "" {
         didSet {
-            //print("Elements Label : \(label)")
+            
         }
     }
     var mode = Date() {
         didSet {
-            //print("Elements mode: \(mode)")
+            
         }
     }
     var formattedNumeric = "" {
         didSet {
-            //print("Elements formattedNumeric: \(formattedNumeric)")
+            
         }
     }
-    //var keyboard = NSNumber()
     
 }

@@ -14,17 +14,15 @@ import SwiftyJSON
 
 class SuperViewController: UIViewController {
 
-    
     /*
     Model Class Instances
 */
-    
     let petModels = PetModel()
     let pages = Pages()
     let elements = Elements()
     let sections = Sections()
     let rules = Rules()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +46,8 @@ class SuperViewController: UIViewController {
             fatalError()
         }
         onComplete(petAdoptionJson)
-        //print("Pet Adoption Form Json :\(petAdoptionJson)")
 
     }
-
 
     /*
     Append Json Data To Model
@@ -59,12 +55,7 @@ class SuperViewController: UIViewController {
 
     func getData () {
 
-        getPetAdoptionJson { (formJsonResults) in
-
-        }
-
         getPetAdoptionJson { (petFormJsonResults) in
-            //print("Pet JSON Form: \(petFormJsonResults)")
 
             //** Form Response
             self.petModels.id = petFormJsonResults.value(forKey: "id") as? String ?? ""
@@ -73,81 +64,63 @@ class SuperViewController: UIViewController {
 
             //** Pages
             let pagesArray = petFormJsonResults.value(forKey: "pages") as? NSArray
-            //print("Pages :\(pagesArray!)")
 
             pagesArray!.forEach({ (pagesDictionary) in
 
                 let pagesJsonDictionary = pagesDictionary as! NSDictionary
                 let pag = Pages()
-                //print("P: \(pagesJsonDictionary)")
 
-                pag.label = pagesJsonDictionary.value(forKey: "label") as? String ?? ""
-                self.petModels.pages.append(pag)
-                //print("DD: \(self.petModels.pages.count)")
-               
+                    pag.label = pagesJsonDictionary.value(forKey: "label") as? String ?? ""
+                    self.petModels.pages.append(pag)
                 
-                //** Sections
-                let sectionsArray = pagesJsonDictionary.value(forKey: "sections") as? NSArray
-                //print("Sections nn: \(sectionsArray)")
+                    //** Sections
+                    let sectionsArray = pagesJsonDictionary.value(forKey: "sections") as? NSArray
 
-                sectionsArray!.forEach({ (sectionsDictionary) in
+                    sectionsArray!.forEach({ (sectionsDictionary) in
 
-                    let sectionsJsonDictionary = sectionsDictionary as! NSDictionary
-                    //print("Sections Dict: \(sectionsJsonDictionary)")
-                    let sect = Sections()
+                        let sectionsJsonDictionary = sectionsDictionary as! NSDictionary
+                        let sect = Sections()
 
-                    sect.label = sectionsJsonDictionary.value(forKey: "label") as? String ?? ""
-                    self.pages.sections.append(sect)
-                    //print("Secti count: \(self.pages.sections.count)")
+                        sect.label = sectionsJsonDictionary.value(forKey: "label") as? String ?? ""
+                        self.pages.sections.append(sect)
 
-                    //** Elements
-                    let elementArray = sectionsJsonDictionary.value(forKey: "elements") as? NSArray
-                    //print("EE: \(elementArray)")
+                        //** Elements
+                        let elementArray = sectionsJsonDictionary.value(forKey: "elements") as? NSArray
+                            elementArray!.forEach({ (elementsDictionary) in
 
-                    elementArray!.forEach({ (elementsDictionary) in
+                                let elementsJsonDictionary = elementsDictionary as! NSDictionary
+                                let elem = Elements()
 
-                        let elementsJsonDictionary = elementsDictionary as! NSDictionary
-                        //print("Elelments Json Dict: \(elementsJsonDictionary)")
-                        let elem = Elements()
+                                elem.file = elementsJsonDictionary.value(forKey: "file") as? String ?? ""
+                                elem.type = elementsJsonDictionary.value(forKey: "type") as? String ?? ""
+                                elem.label = elementsJsonDictionary.value(forKey: "label") as? String ?? ""
+                                elem.unique_id =  elementsJsonDictionary.value(forKey: "unique_id") as? String ?? ""
+                                elem.mode = elementsJsonDictionary.value(forKey: "mode") as? Date ?? Date()
+                                elem.formattedNumeric = elementsJsonDictionary.value(forKey: "formattedNumeric") as? String ?? ""
+                                self.sections.elements.append(elem)
 
-                        elem.file = elementsJsonDictionary.value(forKey: "file") as? String ?? ""
-                        elem.type = elementsJsonDictionary.value(forKey: "type") as? String ?? ""
-                        elem.label = elementsJsonDictionary.value(forKey: "label") as? String ?? ""
-                        elem.unique_id =  elementsJsonDictionary.value(forKey: "unique_id") as? String ?? ""
-                        elem.mode = elementsJsonDictionary.value(forKey: "mode") as? Date ?? Date()
-                        elem.formattedNumeric = elementsJsonDictionary.value(forKey: "formattedNumeric") as? String ?? ""
+                                //** Rule
+                                let rulesArray = elementsJsonDictionary.value(forKey: "rules") as? NSArray
+                                rulesArray!.forEach({ (rulesDictionary) in
 
-                        self.sections.elements.append(elem)
-                        //print("Elelemts: \(self.elements.file, self.elements.label, self.elements.mode)")
-                       // print("Elelment array count: \(self.sections.elements.count)")
+                                        let rulesJsonDictionary = rulesDictionary as! NSDictionary
 
-                        //** Rule
-                        let rulesArray = elementsJsonDictionary.value(forKey: "rules") as? NSArray
-                        //print("Rules Array: \(rulesArray)")
+                                        let rul = Rules()
 
-                        rulesArray!.forEach({ (rulesDictionary) in
+                                        rul.action = rulesJsonDictionary.value(forKey: "action") as? String ?? ""
+                                        rul.condition = rulesJsonDictionary.value(forKey: "condition") as? String ?? ""
+                                        rul.otherwise = rulesJsonDictionary.value(forKey: "otherwise") as? String ?? ""
+                                        rul.targets = rulesJsonDictionary.value(forKey: "targets") as? [String] ?? []
 
-                            let rulesJsonDictionary = rulesDictionary as! NSDictionary
-                            //print("Rules Json Dict: \(rulesJsonDictionary)")
+                                        self.elements.rules.append(rul)
 
-                            let rul = Rules()
+                                    })
 
-                            rul.action = rulesJsonDictionary.value(forKey: "action") as? String ?? ""
-                            rul.condition = rulesJsonDictionary.value(forKey: "condition") as? String ?? ""
-                            rul.otherwise = rulesJsonDictionary.value(forKey: "otherwise") as? String ?? ""
-                            rul.targets = rulesJsonDictionary.value(forKey: "targets") as? [String] ?? []
-
-                            self.elements.rules.append(rul)
-                            //print("Rules count: \(self.elements.rules.count)")
-
+                            })
                         })
-
-                    })
                 })
-            })
+            }
         }
-    }
-
 }
 
 
