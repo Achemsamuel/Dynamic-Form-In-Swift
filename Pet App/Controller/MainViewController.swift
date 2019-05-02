@@ -32,6 +32,7 @@ class MainViewController: SuperViewController {
     @IBOutlet weak var petAdoptionFormCollectionView: UICollectionView!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var pageLabel: UILabel!
     
     
     func preSetUp () {
@@ -62,16 +63,69 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+ 
+        for pages in petModels.pages {
+            print("Pages \(pages.label)")
+        }
+        for sectionLabels in pages.sections {
+            print("Sections-- \(sectionLabels.label)")
+        }
+        
+        for elementType in sections.elements {
+            print("Elements \(elementType.type)")
+            if elementType.type.contains("embeddedphoto") {
+                print("true")
+            } else {
+                print("false")
+            }
+        }
+        
+        let mi = pages.sections[indexPath.section]
+        
+        /*
+         Cell Set up
+         */
+        
         
         switch  indexPath.section {
+            
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
+            
+            for pages in petModels.pages {
+                if pages.label == "Page 1" {
+                    print("Good stuff")
+                    for elementType in sections.elements {
+                        print("Elements \(elementType.type)")
+                        if elementType.type.contains("embeddedphoto") {
+                            print("true ---")
+                            cell.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
+                        } else {
+                            print("false")
+                        }
+                    
+                }
+                
+                
+            }
+                
+            }
+            for sectionLabels in pages.sections {
+                print("Section : \(sectionLabels.label)")
+                
+               // print("jj: \(mi.label)")
+            }
+            
+      
+            
             pages(currentPage: indexPath.section)
             nextButton.titleLabel?.text = "Next"
             //previousButton.isHidden = true
             cell.backgroundColor = UIColor.clear
             return cell
+            
         case 1:
+    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
             pages(currentPage: indexPath.section)
             previousButton.isHidden = false
@@ -79,18 +133,25 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell.backgroundColor = UIColor.clear
             //nextButton.titleLabel?.text = "Next"
             return cell
+            
         case 2:
+            print("kk \(mi.label)")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PetFormCollectionViewCell
             pages(currentPage: indexPath.section)
             previousButton.isHidden = false
             cell.addSubview(datePickerSetUp(vc: self))
             cell.backgroundColor = UIColor.clear
-            nextButton.titleLabel?.text = "Submit"
+            if indexPath.section == petModels.pages.count - 1 {
+                nextButton.titleLabel?.text = "Submit"
+            }
+            
             return cell
+            
         default:
             return UICollectionViewCell()
         }
-    }
+      
+        }
     
 }
 
@@ -180,22 +241,25 @@ extension MainViewController {
             print("f : \(petModels.pages[0].label.last!)")
             
             if (petModels.pages[0].label.last) == "1" {
-                print("Nice!")
+                //pageLabel.text = String(petModels.pages[0].label.last!)
+                print("Page \(String(describing: petModels.pages[0].label.last!))")
+                //petFormC.addSubview(super.embedPhoto(fileUrl: sections.elements[0].file))
             }
-            
-            if currentPage == 1 {
+        } else if  currentPage == 1 {
                 if (petModels.pages[1].label.last) == "2" {
-                    print("Nice 2")
+                    //pageLabel.text = String(petModels.pages[1].label.last!)
+                    print("Page \(String(describing: petModels.pages[1].label.last!))")
                 }
             }
             
-            if currentPage == 2 {
+            else if currentPage == 2 {
+            
                 if (petModels.pages[2].label.last) == "3" {
-                    print("Nice 3")
+                    print("Page \(String(describing: petModels.pages[2].label.last!))")
+                    //pageLabel.text = String(petModels.pages[2].label.last!)
                 }
             }
         }
-    }
     
     
 }
